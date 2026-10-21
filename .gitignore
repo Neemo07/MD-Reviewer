@@ -1,0 +1,7 @@
+node_modules/
+client/dist/
+desktop/src-tauri/target/
+desktop/src-tauri/binaries/
+*.log
+.DS_Store
+Thumbs.db

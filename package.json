@@ -1,0 +1,22 @@
+{
+  "name": "md-reader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Markdown file previewer and editor with a web-view GUI.",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "start": "node scripts/start.js",
+    "dev": "node scripts/dev.js",
+    "build": "npm run build -w client",
+    "test": "npm run test -w server",
+    "desktop:dev": "npm run tauri -w desktop dev",
+    "desktop:build": "npm run tauri -w desktop build"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}

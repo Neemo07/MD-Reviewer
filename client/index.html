@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-theme="system" data-resolved-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>MD Reader</title>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <button id="toggle-sidebar" class="icon-btn" title="Toggle sidebar" aria-label="Toggle sidebar">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v10H2z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v10" stroke="currentColor" stroke-width="1.2"/></svg>
+        </button>
+        <span class="brand">MD&nbsp;Reader</span>
+        <span class="root-name" id="root-name" title="Root folder"></span>
+        <span class="doc-title" id="doc-title">No file open</span>
+        <span class="spacer"></span>
+        <div class="view-switch" id="view-switch" role="group" aria-label="View mode">
+          <button type="button" data-view="editor" title="Editor only">Editor</button>
+          <button type="button" data-view="split" title="Split view">Split</button>
+          <button type="button" data-view="preview" title="Preview only">Preview</button>
+        </div>
+        <button type="button" id="sync-btn" class="icon-btn" title="Synchronise scrolling" aria-label="Synchronise scrolling" aria-pressed="false">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 5h7M8 3l2 2-2 2M13 11H6M8 13l-2-2 2-2" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" id="toc-btn" class="icon-btn" title="Toggle outline" aria-label="Toggle outline" aria-pressed="false">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h2M2 8h2M2 12h2M6 4h8M6 8h8M6 12h5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </button>
+        <button type="button" id="autosave-btn" class="icon-btn" title="Toggle autosave" aria-label="Toggle autosave" aria-pressed="false">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.6a6.4 6.4 0 1 0 0 12.8A6.4 6.4 0 0 0 8 1.6z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 4.6V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </button>
+        <button type="button" id="export-btn" class="icon-btn" title="Export (HTML / PDF)" aria-label="Export">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v7.5M5 6.8 8 9.8l3-3M3 13h10" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" id="save-btn" class="btn" title="Save (Ctrl+S)">Save</button>
+        <button type="button" id="theme-btn" class="icon-btn" title="Cycle theme (system / light / dark)" aria-label="Toggle theme">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.6a6.4 6.4 0 1 0 6.4 6.4A5 5 0 0 1 8 1.6z" fill="currentColor"/></svg>
+        </button>
+      </header>
+
+      <div class="body">
+        <aside class="sidebar" id="sidebar">
+          <div class="sidebar-head">
+            <span class="sidebar-title">Files</span>
+            <span class="spacer"></span>
+            <button type="button" id="new-file" class="icon-btn small" title="New markdown file" aria-label="New file">+</button>
+            <button type="button" id="new-folder" class="icon-btn small" title="New folder" aria-label="New folder">&#9707;</button>
+            <button type="button" id="refresh-tree" class="icon-btn small" title="Refresh file list" aria-label="Refresh">&#8635;</button>
+          </div>
+          <div class="tree" id="file-tree" role="tree"></div>
+        </aside>
+
+        <main class="workspace" id="workspace" data-view="split">
+          <section class="pane pane-editor" id="editor-pane">
+            <div class="fmt-toolbar" id="format-toolbar" role="toolbar" aria-label="Formatting"></div>
+            <div class="editor-host" id="editor"></div>
+            <div class="empty-state" id="editor-empty">
+              <p><strong>No file open</strong></p>
+              <p>Pick a markdown file from the sidebar to start editing.</p>
+            </div>
+          </section>
+          <div class="splitter" id="splitter" role="separator" aria-orientation="vertical" tabindex="0"></div>
+          <section class="pane pane-preview" id="preview-pane">
+            <article class="preview markdown-body" id="preview"></article>
+          </section>
+          <aside class="toc" id="toc-panel" hidden>
+            <div class="toc-head">Outline</div>
+            <nav class="toc-body" id="toc-list" aria-label="Outline"></nav>
+          </aside>
+        </main>
+      </div>
+
+      <footer class="statusbar">
+        <span id="status-file" class="status-item">No file</span>
+        <span class="status-sep"></span>
+        <span id="status-words" class="status-item">0 words</span>
+        <span id="status-chars" class="status-item">0 characters</span>
+        <span class="status-sep"></span>
+        <span id="status-cursor" class="status-item">Ln 1, Col 1</span>
+        <span class="spacer"></span>
+        <span id="status-autosave" class="status-item">Autosave off</span>
+        <span class="status-sep"></span>
+        <span id="status-save" class="status-item save-state">Saved</span>
+      </footer>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
