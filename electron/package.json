@@ -1,0 +1,59 @@
+{
+  "name": "md-reader-electron",
+  "version": "1.0.0",
+  "description": "MD Reader as a desktop app",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.neemo07.mdreader",
+    "productName": "MD Reader",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../",
+        "to": "app",
+        "filter": [
+          "server/**/*",
+          "scripts/**/*",
+          "client/dist/**/*",
+          "package.json",
+          "README.md"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "../client/public/icon-512.png"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "../client/public/icon-512.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "../client/public/icon-512.png"
+    }
+  }
+}
